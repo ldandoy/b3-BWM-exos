@@ -17,16 +17,16 @@ class Bdd {
     }
 
     public function fetch($sql, $data = null) {
-        $this->exec($sql, $data);
+        $this->execute($sql, $data);
         return $this->sth->fetch(PDO::FETCH_ASSOC);
     }
 
     public function fetchAll($sql, $data = null) {
-        $this->exec($sql, $data);
+        $this->execute($sql, $data);
         return $this->sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function exec($sql, $data = null) {
+    public function execute($sql, $data = null) {
         $this->sth = $this->dbh->prepare($sql);
         return $this->sth->execute($data);
     }

@@ -12,3 +12,4 @@
         <link rel="stylesheet" href="./css/main.css" />
     </head>
     <body>
+    <?php require_once('nav.php'); ?>
