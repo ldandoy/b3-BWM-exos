@@ -21,6 +21,11 @@ class Bdd {
         return $this->sth->fetch(PDO::FETCH_ASSOC);
     }
 
+    function fetchAll ($sql, $data=null) {
+        $this->execute($sql, $data);
+        return $this->sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function execute ($sql, $data=null) {
         $this->sth = $this->link->prepare($sql);
         return $this->sth->execute($data);

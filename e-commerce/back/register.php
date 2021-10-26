@@ -27,29 +27,30 @@ if (isset($_POST['send'])) {
 
 ?>
 
-<h1>Créez votre compte</h1>
-
-<form action="" method="post">
+<form class="form" action="" method="post">
+    <h1 id="title">Créez votre compte</h1>
     <div>
-        <label for="firstname">Prénom</label>
-        <input type="text" require name="firstname" id="firstname" placeholder="Entrez votre prénom" />
+        <label class="form-label" for="firstname">Prénom</label>
+        <input class="form-input" type="text" require name="firstname" id="firstname" placeholder="Entrez votre prénom" />
     </div>
     <div>
-        <label for="lastname">Nom</label>
-        <input type="text" require name="lastname" id="lastname" placeholder="Entrez votre nom" />
+        <label class="form-label" for="lastname">Nom</label>
+        <input class="form-input" type="text" require name="lastname" id="lastname" placeholder="Entrez votre nom" />
     </div>
     <div>
-        <label for="email">Email</label>
-        <input type="email" require name="email" id="email" placeholder="Entrez votre email" />
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" require name="email" id="email" placeholder="Entrez votre email" />
     </div>
     <div>
-        <label for="pwd">Password</label>
-        <input type="password" require name="password" id="pwd" placeholder="Entrez votre mot de passe" />
+        <label class="form-label" for="pwd">Password</label>
+        <input class="form-input" type="password" require name="password" id="pwd" placeholder="Entrez votre mot de passe" />
     </div>
-    <div>
+    <div class="mb-20">
         <input type="submit" name="send" value="Créer le compte" />
     </div>
-    <a href="login.php">Déjà un compte ?</a>
+    <div class="text-center">
+        <a href="login.php">Déjà un compte ?</a>
+    </div>
 </form>
 
 <?php require_once('templates/_footer.php'); ?> 

@@ -28,29 +28,33 @@
     }
 ?>
 
-<h1>Login</h1>
+<?php require_once('templates/_header.php'); ?>
 
-<?php
+<form class="form" action="" method="post">
+    
+    <h1 id="title" class="text-center">Login</h1>
 
-if ($error) {
-    echo $error;
-}
-?>
+    <?php
 
-<form action="" method="post">
+    if ($error) {
+        echo $error;
+    }
+    ?>
+
     <div>
-        <label for="email">Email</label>
-        <input type="email" required name="email" id="email" placeholder="Entrez votre email" />
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" required name="email" id="email" placeholder="Entrez votre email" />
     </div>
     <div>
-        <label for="pwd">Password</label>
-        <input type="password" required name="password" id="pwd" placeholder="Entrez votre mot de passe" />
+        <label class="form-label" for="pwd">Password</label>
+        <input class="form-input" type="password" required name="password" id="pwd" placeholder="Entrez votre mot de passe" />
     </div>
-    <div>
+    <div class="mb-20">
         <input type="submit" name="send" value="Connexion" />
     </div>
-
-    <a href="register.php">Pas encore de compte ?</a>
+    <div class="text-center">
+        <a href="register.php">Pas encore de compte ?</a>
+    </div>
 </form>
 
 <?php require_once('templates/_footer.php'); ?> 

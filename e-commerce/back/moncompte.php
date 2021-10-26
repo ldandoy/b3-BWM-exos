@@ -3,18 +3,16 @@
 <?php
     require_once('./classes/Session.php');
     $session = new Session();
+    if (!$session->get('user')) {
+        header('Location: login.php');
+    }
+    
     $user = $session->get('user');
 ?>
 
-<div class="">
+<div class="container">
     <nav>
-        <ul>
-            <li>Les produits</li>
-            <li>Les catégories</li>
-            <li>Les factures</li>
-            <li>Les messages</li>
-            <li>Les utilisateurs</li>
-        </ul>
+        <?php require_once('templates/_navbar.php') ?>
     </nav>
     <main>
         <h1>Votre compte <?php echo $user["firstname"] . " " . $user["lastname"]; ?></h1>

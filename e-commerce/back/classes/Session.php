@@ -10,7 +10,16 @@ class Session {
     }
 
     function get($key) {
-        return $_SESSION[$key];
+        if (isset($_SESSION[$key])) {
+            return $_SESSION[$key];
+        } else {
+            return false;
+        }
+    }
+
+    function destroy() {
+        unset($_SESSION);
+        session_destroy();
     }
 }
 
