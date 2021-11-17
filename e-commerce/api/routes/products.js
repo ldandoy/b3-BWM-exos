@@ -1,14 +1,14 @@
 let express = require('express');
 let router = express.Router();
 
-router.get('/', (req, res) => {
-    res.status(200).json({"msg": "Liste des produits"});
-});
+const productModel = require('../models/product');
 
-router.get('/:productId', (req, res) => {
+router.get('/:productId', async (req, res) => {
     let { productId } = req.params;
 
-    res.status(200).json({"msg": "Juste un produit " + productId});
-})
+    let product = await productModel.findByPk(productId);
+
+    res.status(200).json(product);
+});
 
 module.exports = router;

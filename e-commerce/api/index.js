@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('mysql://root:root@localhost:3306/e-commerce');
@@ -14,8 +15,10 @@ const routesProducts = require('./routes/products');
 const routesProductCategory = require('./routes/productCaterogy');
 
 const app = express();
+
 const port = 5000;
 
+app.use(morgan());
 app.use('/api/product-category', routesProductCategory);
 app.use('/api/products', routesProducts);
 

@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = new Sequelize('mysql://root:root@localhost:3306/e-commerce');
 
-class productCategory extends Model {}
+class productCategory extends Model {};
 
 productCategory.init({
     name: {
@@ -18,6 +18,6 @@ productCategory.init({
     underscored: true,
     tableName: 'product_category',
     modelName: 'productCategory'
-})
+});
 
 module.exports = productCategory;
