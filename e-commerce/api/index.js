@@ -1,17 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const { Sequelize } = require('sequelize');
+const bodyParser = require('body-parser');
 
-const sequelize = new Sequelize('mysql://root:root@localhost:3306/e-commerce');
-
-try {
-    sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-} catch (error) {
-    console.error('Unable to connect to the database:', error);
-}
-
+const routesAuth = require('./routes/auth');
 const routesProducts = require('./routes/products');
 const routesProductCategory = require('./routes/productCaterogy');
 
@@ -20,9 +12,11 @@ const app = express();
 const port = 5000;
 
 app.use(cors());
-app.use(morgan());
+app.use(bodyParser());
+app.use(morgan('dev'));
 app.use('/api/product-category', routesProductCategory);
 app.use('/api/products', routesProducts);
+app.use('/api', routesAuth);
 
 app.get('/', (req, res) => {
     res.status(200).send('Hello World');
