@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('mysql://root:root@localhost:3306/e-commerce');
@@ -18,6 +19,7 @@ const app = express();
 
 const port = 5000;
 
+app.use(cors());
 app.use(morgan());
 app.use('/api/product-category', routesProductCategory);
 app.use('/api/products', routesProducts);

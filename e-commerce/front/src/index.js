@@ -10,15 +10,14 @@ import { Route, Routes } from "react-router";
 import Home from './pages/Home';
 import Category from './pages/Category';
 
+import Navbar from './components/Navbar';
+
 import './index.css';
 
 const App = () => {
     return <Router>
         <div>
-            <nav>
-                <Link to='/'>Home</Link>
-                <Link to='/category/trousses'>Trousse</Link>
-            </nav>
+            <Navbar />
 
             <Routes>
                 <Route path="/" element={<Home />}></Route>
