@@ -17,7 +17,7 @@ const Product = () => {
         };
 
         fetchData();
-    }, [])
+    }, [productId])
 
     return ( <div className="container">
         { !isloaded && <>Chargement ...</>}
