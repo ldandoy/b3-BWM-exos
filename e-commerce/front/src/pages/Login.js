@@ -1,21 +1,47 @@
 import React, { useState } from 'react'
-import {login} from '../services/auth'
+import { login } from '../services/auth'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+    let navigate = useNavigate();
+
     const [user, setUser] = useState({
         'email'         : '',
         'password'      : ''
     })
+    const [messages, setMessages] = useState([])
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
-        console.log(user)
 
         if (user.password !== "" && user.email !== "") {
-            const res = await login(user)
-            console.log(res)
+            try {
+                await login(user)
+
+                /*setMessages([...messages, {
+                    type: "success",
+                    msg: 'Vous êtes connecté !'
+                }])*/
+
+                navigate("/");
+            } catch (error) {
+                if (error.response) {
+                    setMessages([...messages, {
+                        type: "danger",
+                        msg: error.response.data
+                    }])
+                } else {
+                    setMessages([...messages, {
+                        type: "danger",
+                        msg: 'Erreur: ' + error.message
+                    }])
+                }
+            }
         } else {
-            console.log('erreur sending ...')
+            setMessages([...messages, {
+                type: "danger",
+                msg: 'Vous devez remplir tous les champs obligatoires'
+            }])
         }
     }
 
@@ -28,6 +54,11 @@ const Login = () => {
         <form onSubmit={onSubmitHandler}>
             <div className="mb-4">
                 <h1>Connexion au service</h1>
+            </div>
+            <div className="mb-4">
+                {messages.map((message, index) => <div key={`alert-${index}`} className={`alert alert-${message.type}`} role="alert">
+                    {message.msg}
+                </div>)}
             </div>
             <div>
                 <label className="form-label">Email:</label>

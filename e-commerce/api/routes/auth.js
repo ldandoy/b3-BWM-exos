@@ -45,6 +45,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const {email, password} = req.body;
+        console.log(req.body)
         
         if (typeof email === 'undefined' || email === "" || typeof password === 'undefined' || password === "") {
             let error = 'Les champs obligatoires n\'ont pas été renseignés !';
@@ -61,7 +62,7 @@ router.post('/login', async (req, res) => {
         if (user) {
             if (!bcrypt.compareSync(password, user.password)) {
                 let error = 'Erreur lors de l\'authentification !';
-                console.log(error);
+                console.log('Mauvais mot de passe');
                 return res.status(503).json(error);
             } else {
                 user.password = null;
@@ -69,7 +70,7 @@ router.post('/login', async (req, res) => {
             }
         } else {
             let error = 'Erreur lors de l\'authentification !';
-            console.log(error);
+            console.log('User not found !');
             return res.status(503).json(error);
         }
     }
