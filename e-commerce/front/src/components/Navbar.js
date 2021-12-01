@@ -5,24 +5,25 @@ import axios from 'axios'
 const Navbar = () => {
     const [categories, setCategories] = useState([]);
 
-    const getProductCategory = async () => {
-        const res = await axios.get('http://localhost:5000/api/product-category/')
-        console.log(res)
-        setCategories(res.data)
-    };
-
     useEffect(() => {
-        getProductCategory()
+        const getProductCategory = async () => {
+            const res = await axios.get('http://localhost:5000/api/product-category/')
+            setCategories(res.data)
+            return true;
+        };
+        getProductCategory();
     }, [])
 
     return (
         <nav>
             <Link to='/'>Home</Link>
             {
-                categories.map((category) => <Link to={`/category/${category.id}`}>
+                categories.map((category) => <Link key={`cat-${category.id}`} to={`/category/${category.id}`}>
                     {category.name}
                 </Link>)
             }
+            <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
         </nav>
     )
 }

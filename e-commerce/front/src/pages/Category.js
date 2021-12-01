@@ -1,30 +1,42 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 
-import { getProductsByCategoryName } from '../services/products'
+import { getProductsByCategoryId } from '../services/products'
 
 const Category = () => {
-    const {categoryName} = useParams();
+    const {categoryId} = useParams();
     const [products, setProducts] = useState([])
 
-    const fetchData = async () => {
-        const products = await getProductsByCategoryName(categoryName);
-        setProducts(products);
-    }
-
     useEffect(() => {
-        fetchData()
-    
-    }, [categoryName]);
+        const fetchData = async () => {
+            const products = await getProductsByCategoryId(categoryId);
+            setProducts(products);
+            return true;
+        };
+
+        fetchData();
+    }, [categoryId]);
 
     return (
-        <div>
-            <h1>Liste des {categoryName}</h1>
+        <div className="container">
+            <h1>Liste des {categoryId}</h1>
 
-            { products.map((product) =>
-                <p>{product.title}</p>
-            ) }
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+                { products.map((product) => <div className="col" key={product.id}>
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">
+                                <Link to={`/product/${product.id}`}>{product.name}</Link>
+                            </h5>
+                        </div>
+                        <div className="card-footer">
+                            <small className="text-muted">{product.price} €</small>
+                        </div>
+                    </div>
+                </div>) }
+            </div>
         </div>
     )
 }
