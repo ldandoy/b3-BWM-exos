@@ -11,19 +11,19 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Category from './pages/Category';
 import Product from './pages/Product';
-
+import Cart from './pages/Cart';
+import CartSuccess from './pages/CartSuccess'
 import Navbar from './components/Navbar';
-import { MyContext } from './context/MyContext';
+
+import { CartContext } from './context/CartContext';
 
 import './index.css';
 
 const App = () => {
-    const [test, setTest] = useState({
-        test: 'bye'
-    })
+    const [cart, setCart] = useState([])
     
     return <Router>
-        <MyContext.Provider value={{ test, setTest }}>
+        <CartContext.Provider value={{ cart, setCart }}>
             <div>
                 <Navbar />
 
@@ -33,9 +33,11 @@ const App = () => {
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/category/:categoryId" element={<Category />}></Route>
                     <Route path="/product/:productId" element={<Product />}></Route>
+                    <Route path="/cart_success" element={<CartSuccess />}></Route>
+                    <Route path="/cart" element={<Cart />}></Route>
                 </Routes>
             </div>
-        </MyContext.Provider>
+        </CartContext.Provider>
     </Router>
 }
 

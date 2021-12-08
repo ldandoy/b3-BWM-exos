@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
+import { CartContext } from '../context/CartContext'
+
 const Navbar = () => {
+    const {cart, setCart} = useContext(CartContext)
     const [categories, setCategories] = useState([]);
+
+    console.log(cart)
 
     useEffect(() => {
         const getProductCategory = async () => {
@@ -33,7 +38,7 @@ const Navbar = () => {
                     </ul>
 
                     <ul className="navbar-nav ms-auto mb-lg-0">
-                        <li><Link className="nav-link" to='/cart'><i className="fas fa-shopping-cart"></i> <span class="badge bg-secondary">4</span></Link></li>
+                        <li><Link className="nav-link" to='/cart'><i className="fas fa-shopping-cart"></i> <span className="badge bg-secondary">{cart.length}</span></Link></li>
                         <li><Link className="nav-link" to='/login'>Login</Link></li>
                         <li><Link className="nav-link" to='/register'>Register</Link></li>
                     </ul>
