@@ -9,3 +9,8 @@ export const getProduct = async (productId) => {
     const res = await axios.get(`http://localhost:5000/api/products/${productId}`);
     return res.data;
 }
+
+export const getLastProducts = async () => {
+    const res = await axios.get(`http://localhost:5000/api/products/last`);
+    return res.data;
+}
