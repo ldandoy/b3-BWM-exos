@@ -23,7 +23,6 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li><Link className="nav-link" to='/'>Home</Link></li>
                         {
                             categories.map((category) => <li key={`cat-${category.id}`}>
                                 <Link className="nav-link" to={`/category/${category.id}`}>
@@ -34,6 +33,7 @@ const Navbar = () => {
                     </ul>
 
                     <ul className="navbar-nav ms-auto mb-lg-0">
+                        <li><Link className="nav-link" to='/cart'><i className="fas fa-shopping-cart"></i> <span class="badge bg-secondary">4</span></Link></li>
                         <li><Link className="nav-link" to='/login'>Login</Link></li>
                         <li><Link className="nav-link" to='/register'>Register</Link></li>
                     </ul>

@@ -14,6 +14,7 @@ const port = 5000;
 app.use(cors());
 app.use(bodyParser());
 app.use(morgan('dev'));
+app.use(express.static('public'))
 app.use('/api/product-category', routesProductCategory);
 app.use('/api/products', routesProducts);
 app.use('/api', routesAuth);

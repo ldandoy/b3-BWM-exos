@@ -2,3 +2,21 @@ body {
     background-color: antiquewhite;
     margin-top: 70px;
 }
+
+.titleProduct {
+    padding-top: 50px;
+}
+
+.description {
+    font-size: 1.1rem;
+    text-align: justify;
+    padding-top: 30px;
+}
+
+.price {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
